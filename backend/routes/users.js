@@ -1,51 +1,37 @@
+// backend/routes/users.js
 const express = require('express');
-const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
+const router = express.Router();
+const userController = require('../controllers/userController');
 
-// Middleware de validation
 const validateUser = [
-  check('firstname').not().isEmpty().withMessage('First name is required'),
-  check('lastname').not().isEmpty().withMessage('Last name is required'),
-  check('email').isEmail().withMessage('Please include a valid email'),
-  check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
+  check('firstname').not().isEmpty().withMessage('Prénom requis'),
+  check('lastname').not().isEmpty().withMessage('Nom de famille requis'),
+  check('email').isEmail().withMessage('Merci de fournir une véritable adresse mail'),
+  check('password').isLength({ min: 12 }).withMessage('Le mot de passes doit posséder au moins 12 caractères')
 ];
 
-// Route d'inscription
-router.post('/register', validateUser, async (req, res) => {
+const validateLogin = [
+  check('email').isEmail().withMessage('Merci de fournir une véritable adresse mail'),
+  check('password').exists().withMessage('Un mot de passe est requis, tu ne penses pas ? ')
+];
+
+router.post('/register', validateUser, (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
+    console.log("Validation errors: ", errors.array());
     return res.status(400).json({ errors: errors.array() });
   }
+  next();
+}, userController.registerUser);
 
-  const { firstname, lastname, email, password, country } = req.body;
-
-  try {
-    let user = await User.findOne({ email });
-
-    if (user) {
-      return res.status(400).json({ msg: 'User already exists' });
-    }
-
-    user = new User({
-      firstname,
-      lastname,
-      email,
-      password,
-      country
-    });
-
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
-
-    await user.save();
-
-    res.send('User registered');
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
+router.post('/login', validateLogin, (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log("Validation errors: ", errors.array());
+    return res.status(400).json({ errors: errors.array() });
   }
-});
+  next();
+}, userController.loginUser);
 
 module.exports = router;

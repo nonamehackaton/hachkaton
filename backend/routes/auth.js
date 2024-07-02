@@ -1,24 +1,21 @@
-// backend/routes/auth.js
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
+const router = express.Router();
 
+// Google authentication route
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/account-security/login' }),
-  function(req, res) {
-    res.redirect('/dashboard'); // Redirigez vers la page de tableau de bord ou celle que vous souhaitez
-  }
-);
+// Google authentication callback route
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/');
+});
 
-router.get('/linkedin', passport.authenticate('linkedin'));
+// LinkedIn authentication route
+router.get('/linkedin', passport.authenticate('linkedin', { scope: ['r_emailaddress', 'r_liteprofile'] }));
 
-router.get('/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/account-security/login' }),
-  function(req, res) {
-    res.redirect('/dashboard'); // Redirigez vers la page de tableau de bord ou celle que vous souhaitez
-  }
-);
+// LinkedIn authentication callback route
+router.get('/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/');
+});
 
 module.exports = router;
