@@ -182,7 +182,7 @@ const Navbar = () => {
             <div className="container mx-auto py-3 px-3 lg:flex items-center justify-between border-b hidden">
                 {/* ==================== Left =========================== */}
                 <div className="flex items-center">
-                    <div>
+                    <div className="flex space-x-4">
                         <Image
                             src="/images/logo.png"                        
                             width={60}
@@ -191,6 +191,7 @@ const Navbar = () => {
                             className="cursor-pointer"
                             onClick={() => router.push('/')}
                         />
+                        <h1 className="text-[2.03rem] font-semibold">CyberConnect</h1>
                     </div>
                     <ul className="flex 2xl:space-x-12 xl:space-x-9 space-x-6 2xl:ml-14 xl:ml-11 ml-6">
                         <li>
@@ -356,7 +357,7 @@ const Navbar = () => {
 
                         <li>
                             <a className={`cursor-pointer flex items-center text-[1.03rem] font-semibold hover:text-cyan-700 ${subLinksIII === true ? "text-cyan-700" : "text-zinc-700"}`} onClick={ThirdLinkHandle}> 
-                                Why Branda
+                                Pourquoi Nous
                                 <FaCaretDown className={`mt-1 xl:ml-1 ml-[1px] transition ${(subLinksIII === true) ? "rotate-180" : "rotate-0"}`}/>
                             </a>
 
@@ -703,7 +704,7 @@ const Navbar = () => {
                                 className={`flex items-center justify-between font-semibold text-[1.03rem] hover:text-cyan-700 cursor-pointer ${(mobileSubListIII === true ? "text-cyan-700" : "text-zinc-700")}`}
                                 onClick={ThirdLinkHandleMb}                   
                             >
-                                Why Branda
+                                Pourquoi Nous
                                 <FaAngleDown className={`transition ${(mobileSubListIII === true) ? "rotate-180" : "rotate-0"}`}/>
                             </a> 
 

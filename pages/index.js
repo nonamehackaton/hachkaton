@@ -25,7 +25,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
 
       {/* ============== Head Tag =============== */}
-      <HeadTag title="Brenda - The World's Work Marketplace"/>
+      <HeadTag title="CyberConnect - La plateforme pour les freelance"/>
 
       {/* ================= Header ================= */}
       <header className="header-bg">
