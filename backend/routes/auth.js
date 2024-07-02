@@ -1,25 +1,24 @@
+// backend/routes/auth.js
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-// Route pour Google OAuth
-router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/' }),
-    function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/');
-    });
+router.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: '/account-security/login' }),
+  function(req, res) {
+    res.redirect('/dashboard'); // Redirigez vers la page de tableau de bord ou celle que vous souhaitez
+  }
+);
 
-// Route pour LinkedIn OAuth
-router.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
+router.get('/linkedin', passport.authenticate('linkedin'));
 
-router.get('/auth/linkedin/callback',
-    passport.authenticate('linkedin', { failureRedirect: '/' }),
-    function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/');
-    });
+router.get('/linkedin/callback',
+  passport.authenticate('linkedin', { failureRedirect: '/account-security/login' }),
+  function(req, res) {
+    res.redirect('/dashboard'); // Redirigez vers la page de tableau de bord ou celle que vous souhaitez
+  }
+);
 
 module.exports = router;
