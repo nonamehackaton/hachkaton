@@ -16,6 +16,14 @@ const Login = () => {
         e.preventDefault();
     }
 
+    const handleGoogleLogin = () => {
+        window.location.href = "http://localhost:3001/auth/google";
+    }
+
+    const handleLinkedInLogin = () => {
+        window.location.href = "http://localhost:3001/auth/linkedin";
+    }
+
     return (
         <div className="min-h-screen flex flex-col">
 
@@ -59,14 +67,14 @@ const Login = () => {
                             </div>
 
                             {/* ================= Continue with section ==================== */}
-                            <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5">
+                            <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5" onClick={handleGoogleLogin}>
                                <FcGoogle className="text-xl mr-2"/> 
                                Continue with Google
                             </button>
 
-                            <button className="w-full py-2 px-3 bg-sky-600 rounded-full font-semibold text-white transition hover:bg-sky-700 flex items-center justify-center mt-5">
+                            <button className="w-full py-2 px-3 bg-sky-600 rounded-full font-semibold text-white transition hover:bg-sky-700 flex items-center justify-center mt-5" onClick={handleLinkedInLogin}>
                                <FaLinkedin className="text-xl mr-2"/> 
-                               Continue with Linkdin
+                               Continue with LinkedIn
                             </button>
                         </div>
 
@@ -79,7 +87,7 @@ const Login = () => {
                             {/* ============== */}
                             <div className="sm:w-auto w-full">
                                 <button className="w-full py-2 sm:px-20 px-3 border border-[#0C4A6E] rounded-full font-semibold text-[#0C4A6E] transition hover:border-[#0C4A6E] hover:text-[#0C4A6E] flex items-center justify-center mt-5" onClick={() => router.push("/account-security/signup")}>
-                                    sign Up
+                                    Sign Up
                                 </button>
                             </div>
                         </div>

@@ -48,6 +48,13 @@ const SignUp = () => {
         }
     }
 
+    const handleGoogleSignup = () => {
+        window.location.href = "http://localhost:3001/auth/google";
+    }
+
+    const handleLinkedInSignup = () => {
+        window.location.href = "http://localhost:3001/auth/linkedin";
+    }
 
     return (
         <div className="min-h-screen flex flex-col">
@@ -123,14 +130,14 @@ const SignUp = () => {
                             </h2>
 
                              {/* ================= Continue with section ==================== */}
-                             <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5">
+                             <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5" onClick={handleGoogleSignup}>
                                <FcGoogle className="text-xl mr-2"/> 
                                Continue with Google
                             </button>
 
-                            <button className="w-full py-2 px-3 bg-sky-600 rounded-full font-semibold text-white transition hover:bg-sky-700 flex items-center justify-center mt-5">
+                            <button className="w-full py-2 px-3 bg-sky-600 rounded-full font-semibold text-white transition hover:bg-sky-700 flex items-center justify-center mt-5" onClick={handleLinkedInSignup}>
                                <FaLinkedin className="text-xl mr-2"/> 
-                               Continue with Linkdin
+                               Continue with LinkedIn
                             </button>
 
                             {/* ================= Or section ==================== */}
@@ -240,14 +247,14 @@ const SignUp = () => {
                             </h2>
 
                                 {/* ================= Continue with section ==================== */}
-                                <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5">
+                                <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5" onClick={handleGoogleSignup}>
                                 <FcGoogle className="text-xl mr-2"/> 
                                 Continue with Google
                             </button>
 
-                            <button className="w-full py-2 px-3 bg-sky-600 rounded-full font-semibold text-white transition hover:bg-sky-700 flex items-center justify-center mt-5">
+                            <button className="w-full py-2 px-3 bg-sky-600 rounded-full font-semibold text-white transition hover:bg-sky-700 flex items-center justify-center mt-5" onClick={handleLinkedInSignup}>
                                 <FaLinkedin className="text-xl mr-2"/> 
-                                Continue with Linkdin
+                                Continue with LinkedIn
                             </button>
 
                             {/* ================= Or section ==================== */}
@@ -311,6 +318,18 @@ const SignUp = () => {
                                     <option value="Bahamas">Bahamas</option>
                                     <option value="Bangladesh">Bangladesh</option>
                                     <option value="Barbados">Barbados</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Palestine">Palestine</option>
+                                    <option value="Estonia">Estonia</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="South Korea">South Korea</option>
+                                    <option value="France">France</option>
+                                    <option value="Netherlands">Netherlands</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="Norway">Norway</option>
+                                    <option value="Finland">Finland</option>
                                 </select>
 
                                 {/* ================= send me checkbox =============== */}

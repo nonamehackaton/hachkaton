@@ -1,29 +1,25 @@
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const passport = require('passport');
 
-// Initialiser Passport
-require('../config/passport');
+// Route pour Google OAuth
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-// Routes d'authentification existantes
-router.post('/register', register);
-router.post('/login', login);
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+    });
 
-// Google OAuth
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),
-  (req, res) => {
-    res.redirect('/'); // Redirige vers la page d'accueil après une connexion réussie
-  }
-);
+// Route pour LinkedIn OAuth
+router.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 
-// LinkedIn OAuth
-router.get('/linkedin', passport.authenticate('linkedin'));
-router.get('/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }),
-  (req, res) => {
-    res.redirect('/'); // Redirige vers la page d'accueil après une connexion réussie
-  }
-);
+router.get('/auth/linkedin/callback',
+    passport.authenticate('linkedin', { failureRedirect: '/' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+    });
 
 module.exports = router;

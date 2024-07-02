@@ -1,30 +1,22 @@
 const express = require('express');
-const connectDB = require('./config/db');
 const passport = require('passport');
 const session = require('express-session');
+require('./config/passport'); 
 
 const app = express();
 
-// Connect to database
-connectDB();
-
-// Init Middleware
-app.use(express.json({ extended: false }));
-
-// Configurer la session
 app.use(session({
-  secret: 'your_secret_key',
-  resave: false,
-  saveUninitialized: false
+    secret: 'nxab<;7tE<x4#Ya3',
+    resave: false,
+    saveUninitialized: true,
 }));
 
-// Initialiser Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Définir les routes
-app.use('/api/auth', require('./routes/auth'));
+const authRoutes = require('./routes/auth');
+app.use(authRoutes);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(3001, () => {
+    console.log('Server is running on port 3001');
+});
