@@ -9,7 +9,7 @@ exports.registerUser = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { firstName, lastName, email, password, country } = req.body;
+    const { firstname, lastname, email, password, country } = req.body;
 
     try {
         let user = await User.findOne({ email });
@@ -19,11 +19,11 @@ exports.registerUser = async (req, res) => {
         }
 
         user = new User({
-            firstName,
-            lastName,
+            firstname,
+            lastname,
             email,
             password,
-            country,
+            country
         });
 
         const salt = await bcrypt.genSalt(10);
@@ -33,19 +33,17 @@ exports.registerUser = async (req, res) => {
 
         const payload = {
             user: {
-                id: user.id,
-            },
+                id: user.id
+            }
         };
 
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET,
-            { expiresIn: 360000 },
-            (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-            }
-        );
+        jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: 360000
+        }, (err, token) => {
+            if (err) throw err;
+            res.json({ token });
+        });
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
