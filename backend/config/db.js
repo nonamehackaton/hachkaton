@@ -1,13 +1,22 @@
-// backend/config/db.js
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/DatabaseUser', {
+    const userDB = await mongoose.createConnection(process.env.MONGO_URI_USER, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
-    console.log('MongoDB connected...');
+
+    const entrepriseDB = await mongoose.createConnection(process.env.MONGO_URI_ENTREPRISE, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+
+    console.log('Connected to DatabaseUser...');
+    console.log('Connected to DatabaseEntreprise...');
+
+    return { userDB, entrepriseDB };
   } catch (err) {
     console.error(err.message);
     process.exit(1);

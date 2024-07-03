@@ -18,7 +18,8 @@ const SignUp = () => {
         lastname: '',
         email: '',
         password: '',
-        country: 'Armenia'
+        country: 'Armenia',
+        role: ''
     });
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -26,12 +27,14 @@ const SignUp = () => {
     const ClientHandle = () => {
         useClient(true);
         if (freelancer) useFreelancer(false);
+        setFormData({ ...formData, role: 'company' });
         useBtnText("Rejoindre en tant que Client");
     }
 
     const FreelancerHandle = () => {
         useFreelancer(true);
         if (client) useClient(false);
+        setFormData({ ...formData, role: 'freelancer' });
         useBtnText("Postuler en tant que Freelance");
     }
 
@@ -40,7 +43,7 @@ const SignUp = () => {
         setError('');
         setSuccess('');
         try {
-            const response = await axios.post('/api/register', formData);
+            const response = await axios.post('/api/users/register', formData);
             console.log('Utilisateur enregistré:', response.data);
             setSuccess('Utilisateur enregistré avec succès!');
         } catch (error) {

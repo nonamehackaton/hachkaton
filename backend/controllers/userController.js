@@ -1,16 +1,9 @@
 const User = require('../models/User');
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-exports.registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
   console.log("Request received: ", req.body);
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    console.log("Validation errors: ", errors.array());
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   const { firstname, lastname, email, password, country } = req.body;
 
   try {
@@ -38,29 +31,20 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-exports.loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
   console.log("Login request received: ", req.body);
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    console.log("Validation errors: ", errors.array());
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   const { email, password } = req.body;
 
   try {
     let user = await User.findOne({ email });
 
     if (!user) {
-      console.log("User not found");
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log(`Password match status: ${isMatch}`);
 
     if (!isMatch) {
-      console.log("Password mismatch");
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
@@ -71,11 +55,15 @@ exports.loginUser = async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-    console.log("Login successful, token generated");
 
     res.json({ token });
   } catch (err) {
     console.error("Error during login: ", err.message);
     res.status(500).send('Server error');
   }
+};
+
+module.exports = {
+  registerUser,
+  loginUser
 };

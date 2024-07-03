@@ -1,4 +1,3 @@
-// frontend/pages/account-security/login.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axiosInstance from '../../utils/axiosInstance';
@@ -8,6 +7,37 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { FaLinkedin } from 'react-icons/fa';
 import LoginSignupFooter from '../../components/LoginSignupFooter';
+
+
+
+const handleForm = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axiosInstance.post('/users/login', { email, password });
+    localStorage.setItem('token', response.data.token);
+    
+    // Fetch user details to determine if they are a freelancer or company
+    const userResponse = await axiosInstance.get('/users/me', {
+      headers: {
+        'Authorization': `Bearer ${response.data.token}`
+      }
+    });
+    
+    const user = userResponse.data;
+    
+    if (user.type === 'freelancer') {
+      router.push(`/dashboard-freelancer?id=${user.id}`);
+    } else if (user.type === 'company') {
+      router.push(`/dashboard-company?id=${user.id}`);
+    } else {
+      setError('Invalid user type.');
+    }
+  } catch (err) {
+    console.error('Login error', err);
+    setError('An error occurred. Please try again.');
+  }
+};
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +52,14 @@ const Login = () => {
       const response = await axiosInstance.post('/users/login', { email, password });
       console.log('Login response received: ', response.data);
       localStorage.setItem('token', response.data.token);
-      router.push('/');
+      localStorage.setItem('role', response.data.role);
+      if (response.data.role === 'freelancer') {
+        router.push('/freelancer-dashboard');
+      } else if (response.data.role === 'company') {
+        router.push('/company-dashboard');
+      } else {
+        router.push('/');
+      }
     } catch (err) {
       console.error('Login error', err);
       setError('Une erreur est survenue. Veuillez réessayer.');

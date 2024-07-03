@@ -23,23 +23,23 @@ const Navbar = () => {
     const router = useRouter();
 
     // =========== Search List state =================
-    const [searchState, useSearchState] = useState("hidden");
+    const [searchState, setSearchState] = useState("hidden");
     // ========== More Dropdown state ====================
-    const [moreDp, useMoreDp] = useState("hidden");
+    const [moreDp, setMoreDp] = useState("hidden");
     // ================ Search Input value ====================
     const [inputText, setInputText] = useState("");
     // ====================== [SubLinks1] Show and Hide state ========================
-    const [subLinksI, useSublinksI] = useState(false);
+    const [subLinksI, setSubLinksI] = useState(false);
     // ====================== [SubLinks2] Show and Hide state ========================
-    const [subLinksII, useSublinksII] = useState(false);
+    const [subLinksII, setSubLinksII] = useState(false);
     // ====================== [SubLinks3] Show and Hide state ========================
-    const [subLinksIII, useSubLinksIII] = useState(false);
+    const [subLinksIII, setSubLinksIII] = useState(false);
     // ====================== SubLinks1 - Content 1 Right Bar state ============================
-    const [subContntI, useSubContentI] = useState(true);
+    const [subContntI, setSubContentI] = useState(true);
     // ====================== SubLinks1 - Content 2 Right Bar state ============================
-    const [subContntII, useSubContentII] = useState(false);
+    const [subContntII, setSubContentII] = useState(false);
     // ====================== SubLinks1 - Content 3 Right Bar state ============================
-    const [subContntIII, useSubContentIII] = useState(false);    
+    const [subContntIII, setSubContentIII] = useState(false);    
 
     // ====================== Mobile State ====================================
     // =========== Mobile list show hide state ================
@@ -53,7 +53,7 @@ const Navbar = () => {
 
     // =========== onclick to search list show, onclick to search list hide ==============
     const ShowSearchState = () => {
-        (searchState == "hidden") ? useSearchState("block") : useSearchState("hidden");
+        (searchState == "hidden") ? setSearchState("block") : setSearchState("hidden");
     }
     
     // ============= Search Form =====================
@@ -64,54 +64,54 @@ const Navbar = () => {
     // ========================= List onclick handle (Dropdown list show [SubLinks1]) ===========================
     const FirstLinkHandle = () => {
         if (subLinksI === false) {
-            useSublinksI(true);
-            (subLinksII === true) ? useSublinksII(false) : null;
-            (subLinksIII === true) ? useSubLinksIII(false) : null;
+            setSubLinksI(true);
+            (subLinksII === true) ? setSubLinksII(false) : null;
+            (subLinksIII === true) ? setSubLinksIII(false) : null;
         } else {
-            useSublinksI(false);
+            setSubLinksI(false);
         }
     }
 
     // ========================= List onclick handle (Dropdown list show [SubLinks2]) ===========================
     const SecondLinkHandle = () => {
         if (subLinksII === false) {
-            useSublinksII(true);
-            (subLinksI === true) ? useSublinksI(false) : null;
-            (subLinksIII === true) ? useSubLinksIII(false) : null;
+            setSubLinksII(true);
+            (subLinksI === true) ? setSubLinksI(false) : null;
+            (subLinksIII === true) ? setSubLinksIII(false) : null;
         } else {
-            useSublinksII(false);
+            setSubLinksII(false);
         }
     }
 
     // ========================= List onclick handle (Dropdown list show [SubLinks3]) ===========================
     const ThirdLinkHandle = () => {
         if (subLinksIII === false) {
-            useSubLinksIII(true);
-            (subLinksI === true) ? useSublinksI(false) : null;
-            (subLinksII === true) ? useSublinksII(false) : null;
+            setSubLinksIII(true);
+            (subLinksI === true) ? setSubLinksI(false) : null;
+            (subLinksII === true) ? setSubLinksII(false) : null;
         } else {
-            useSubLinksIII(false);
+            setSubLinksIII(false);
         }
     }
 
     // ====================== Handle a Sublinks Click ===========================
     const SubLinksBtn = (id) => {
         if (id == 1) {
-            useSubContentI(true);
-            (subContntII === true) ? useSubContentII(false) : null;
-            (subContntIII === true) ? useSubContentIII(false) : null;
+            setSubContentI(true);
+            (subContntII === true) ? setSubContentII(false) : null;
+            (subContntIII === true) ? setSubContentIII(false) : null;
         }
 
         if (id == 2) {
-            useSubContentII(true);
-            (subContntI === true) ? useSubContentI(false) : null;
-            (subContntIII === true) ? useSubContentIII(false) : null;
+            setSubContentII(true);
+            (subContntI === true) ? setSubContentI(false) : null;
+            (subContntIII === true) ? setSubContentIII(false) : null;
         }
 
         if (id == 3) {
-            useSubContentIII(true);
-            (subContntI === true) ? useSubContentI(false) : null;
-            (subContntII === true) ? useSubContentII(false) : null;
+            setSubContentIII(true);
+            (subContntI === true) ? setSubContentI(false) : null;
+            (subContntII === true) ? setSubContentII(false) : null;
         }
     }
 
@@ -408,7 +408,7 @@ const Navbar = () => {
                             placeholder="search"
                             value={inputText}
                             onChange={(e) => setInputText(e.target.value)}
-                            onClick={() => useSearchState("block")}
+                            onClick={() => setSearchState("block")}
                         />
 
                         {(inputText === "") ? <FaSearch className="xl:h-5 h-3 text-zinc-700 cursor-pointer hover:text-zinc-500"/> : null}
@@ -468,7 +468,7 @@ const Navbar = () => {
                         <li key={curVal.id} className="relative">
                             <button 
                                 className={`font-semibold flex items-center hover:text-cyan-700 ${(moreDp === "hidden") ? "text-zinc-600" : "text-cyan-700"}`}
-                                onClick={() => (moreDp === "hidden") ? useMoreDp("") : useMoreDp("hidden")}
+                                onClick={() => (moreDp === "hidden") ? setMoreDp("") : setMoreDp("hidden")}
                             >
                                 {curVal.name}
                                 <span className={`ml-1 transition ${(moreDp === "") ? "rotate-180" : "rotate-0"}`}> 
@@ -541,7 +541,7 @@ const Navbar = () => {
                             placeholder="search"
                             value={inputText}
                             onChange={(e) => setInputText(e.target.value)}
-                            onClick={() => useSearchState("block")}
+                            onClick={() => setSearchState("block")}
                         />
 
                         {(inputText === "") ? <FaSearch className="xl:h-5 h-3 text-zinc-700 cursor-pointer hover:text-zinc-500"/> : null}

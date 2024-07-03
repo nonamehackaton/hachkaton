@@ -1,48 +1,36 @@
 const express = require('express');
-const connectDB = require('./config/db');
-const passport = require('passport');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const cors = require('cors');
-require('dotenv').config();
-require('./config/passport');
+const { check, validationResult } = require('express-validator');
+const userController = require('../controllers/userController');
+const companyController = require('../controllers/companyController');
+const connectDB = require('../config/database');
 
 const app = express();
 
-// Connect to database
-connectDB();
-
-// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
-// CORS Middleware
-app.use(cors());
+app.post('/register', [
+  check('firstname').not().isEmpty().withMessage('Prénom requis'),
+  check('lastname').not().isEmpty().withMessage('Nom de famille requis'),
+  check('email').isEmail().withMessage('Merci de fournir une véritable adresse mail'),
+  check('password').isLength({ min: 12 }).withMessage('Le mot de passe doit posséder au moins 12 caractères')
+], userController.registerUser);
 
-app.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url} - Body: ${JSON.stringify(req.body)}`);
-  next();
-});
+app.post('/login', [
+  check('email').isEmail().withMessage('Merci de fournir une véritable adresse mail'),
+  check('password').exists().withMessage('Un mot de passe est requis, tu ne penses pas ? ')
+], userController.loginUser);
 
-app.use(session({
-  secret: process.env.JWT_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use('/companies', companyController);
 
-// Routes
-app.use('/api/users', (req, res, next) => {
-  console.log('Request to /api/users', req.method, req.body);
-  next();
-}, require('./routes/users'));
-app.use('/auth', (req, res, next) => {
-  console.log('Request to /auth', req.method, req.body);
-  next();
-}, require('./routes/auth'));
-
-// Start server
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+const startServer = async () => {
+  await connectDB();
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+};
+
+startServer();
+
+
