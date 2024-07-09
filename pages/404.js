@@ -6,7 +6,7 @@ const Custom404 = () => {
         <div className="min-h-screen flex flex-col justify-center items-center">
 
             {/* ============== Head Tag =============== */}
-            <HeadTag title="404 - page not found"/>
+            <HeadTag title="404 - La page n'a pas été trouvé ! C'est si triste :("/>
 
             <div className="flex flex-col space-y-3 items-center">
                 <FcEnteringHeavenAlive className="sm:text-9xl text-7xl"/>
@@ -16,7 +16,7 @@ const Custom404 = () => {
                         404
                     </h2>
                     <p className="text-zinc-700 font-semibold sm:text-2xl text-lg">
-                        Page Not Found!
+                         La page n'a pas été trouvé ! C'est si triste...
                     </p>
                 </div>
             </div>

@@ -85,7 +85,7 @@ function RouteLoading() {
                                 About us
                             </h2>
                             <p className="mt-1.5 text-zinc-800 font-semibold text-2xl">
-                                The worl'd work marketplace
+                                La terre tourne sur elle même
                             </p>
 
                             <div className="flex sm:flex-row flex-col sm:space-x-5 sm:items-center mt-7 sm:space-y-0 space-y-1">
@@ -101,10 +101,10 @@ function RouteLoading() {
 
                                 <div>
                                     <h2 className="text-zinc-800 font-semibold text-2xl">
-                                        Michel Petarson
+                                        Jhon Tux
                                     </h2>
                                     <p className="text-zinc-700 font-semibold text-lg">
-                                        President & CEO
+                                        President & CEO µ
                                     </p>
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ const SignUp = () => {
         lastname: '',
         email: '',
         password: '',
-        country: 'Armenia',
+        country: 'France',
         role: ''
     });
     const [error, setError] = useState('');
@@ -27,14 +27,14 @@ const SignUp = () => {
     const ClientHandle = () => {
         useClient(true);
         if (freelancer) useFreelancer(false);
-        setFormData({ ...formData, role: 'company' });
+        setFormData({ ...formData, role: 'Entreprise' });
         useBtnText("Rejoindre en tant que Client");
     }
 
     const FreelancerHandle = () => {
         useFreelancer(true);
         if (client) useClient(false);
-        setFormData({ ...formData, role: 'freelancer' });
+        setFormData({ ...formData, role: 'Freelance' });
         useBtnText("Postuler en tant que Freelance");
     }
 
@@ -45,7 +45,7 @@ const SignUp = () => {
         try {
             const response = await axios.post('/api/users/register', formData);
             console.log('Utilisateur enregistré:', response.data);
-            setSuccess('Utilisateur enregistré avec succès!');
+            setSuccess('Compte crée avec succès!');
         } catch (error) {
             if (error.response && error.response.data.errors) {
                 setError(error.response.data.errors.map(err => err.msg).join(', '));
@@ -129,7 +129,7 @@ const SignUp = () => {
                         <div className="sm:border border-gray-300 rounded-xl">
                             <div className="sm:px-7 sm:pt-10 pb-10 flex flex-col justify-center md:items-center">
                                 <h2 className="font-semibold text-zinc-800 md:text-3xl text-2xl text-center">
-                                    Inscrivez-vous pour trouver le travail que vous aimez
+                                    Inscrivez-vous pour trouver votre futur travail !
                                 </h2>
                                 <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5" onClick={handleGoogleSignup}>
                                     <FcGoogle className="text-xl mr-2" />
@@ -217,7 +217,7 @@ const SignUp = () => {
                                     <div className="flex space-x-3 my-4">
                                         <input id="yes" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-transparent rounded border-gray-300 focus:ring-blue-500 focus:ring-2 cursor-pointer mt-[2px]" />
                                         <label htmlFor="yes" className="text-zinc-800 cursor-pointer text-sm">
-                                            Oui, je comprends et j'accepte les Conditions d'utilisation de Brenda, y compris l'Accord utilisateur et la Politique de confidentialité.
+                                            Oui, je comprends et j'accepte les Conditions d'utilisation de CyberConnect, y compris l'Accord utilisateur et la Politique de confidentialité.
                                         </label>
                                     </div>
                                     <button className="w-full py-2 px-3 bg-[#0C4A6E] rounded-full font-semibold text-white transition hover:bg-[#18465f]" type="submit">
@@ -243,7 +243,7 @@ const SignUp = () => {
                         <div className="sm:border border-gray-300 rounded-xl">
                             <div className="sm:px-7 sm:pt-10 pb-10 flex flex-col justify-center md:items-center">
                                 <h2 className="font-semibold text-zinc-800 md:text-3xl text-2xl text-center">
-                                    Inscrivez-vous pour trouver le travail que vous aimez
+                                    Inscrivez-vous pour trouver votre futur travail !
                                 </h2>
                                 <button className="w-full py-2 px-3 bg-white border border-gray-600 rounded-full font-semibold text-zinc-800 transition hover:bg-gray-100 flex items-center justify-center mt-5" onClick={handleGoogleSignup}>
                                     <FcGoogle className="text-xl mr-2" />

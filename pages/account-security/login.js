@@ -30,11 +30,11 @@ const handleForm = async (e) => {
     } else if (user.type === 'company') {
       router.push(`/dashboard-company?id=${user.id}`);
     } else {
-      setError('Invalid user type.');
+      setError('Le compte est invalide.');
     }
   } catch (err) {
-    console.error('Login error', err);
-    setError('An error occurred. Please try again.');
+    console.error('Erreur de connexion', err);
+    setError('Une erreur est survenue. Merci de bien vouloir réessayer.');
   }
 };
 
@@ -47,7 +47,7 @@ const Login = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    console.log('Login form submitted with: ', { email, password });
+    console.log('Connectez vous avec: ', { email, password });
     try {
       const response = await axiosInstance.post('/users/login', { email, password });
       console.log('Login response received: ', response.data);
@@ -76,7 +76,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <HeadTag title="Connexion - Brenda"/>
+      <HeadTag title="Connexion - CyberConnect"/>
       <LoginSignupHeader/>
       <main>
         <section className="container mx-auto xl:my-14 lg:my-10 md:my-7 my-5 py-3 md:px-5 sm:px-7 px-3 sm:flex sm:justify-center">
@@ -129,7 +129,7 @@ const Login = () => {
             </div>
             <div className="lg:px-24 py-7 flex flex-col justify-center items-center border-t border-gray-300 mt-7">
               <div className="flex w-full justify-center items-center">
-                <span className="text-zinc-600"> Vous n'avez pas de compte Brenda? </span>
+                <span className="text-zinc-600"> Vous n'avez pas de compte CyberConnect ? </span>
               </div>
               <div className="sm:w-auto w-full">
                 <button className="w-full py-2 sm:px-20 px-3 border border-[#0C4A6E] rounded-full font-semibold text-[#0C4A6E] transition hover:border-[#0C4A6E] hover:text-[#0C4A6E] flex items-center justify-center mt-5" onClick={() => router.push("/account-security/signup")}>

@@ -11,7 +11,7 @@ const Contact = () => {
         <div className="min-h-screen flex flex-col">
 
             {/* ============== Head Tag =============== */}
-            <HeadTag title="Contact Us | Brenda"/>
+            <HeadTag title="Contactez nous | CyberConnect"/>
 
               {/* ================= Header ================= */}
             <header className="header-bg">
@@ -45,7 +45,7 @@ const Contact = () => {
 
                                                 
                                                 <a className="text-blue-800 font-semibold underline flex items-center transition hover:text-blue-900">
-                                                    Visit Help Center
+                                                    Visitez le centre d'aide
                                                     <FiArrowRight className="mt-1 ml-1"/>
                                                 </a>
                                             </div>
@@ -61,11 +61,11 @@ const Contact = () => {
                                         <div className="flex space-x-2 bg-[#E6FAF6] py-3.5 px-3 justify-between rounded-xl cursor-pointer transition hover:bg-[#e0f5f0]">
                                             <div className="flex flex-col justify-between space-y-3">
                                                 <h2 className="text-zinc-800 font-semibold text-[21px]">
-                                                    Enterprise Solution
+                                                    Solution d'Entreprise
                                                 </h2>
 
                                                 <a className="text-blue-800 font-semibold underline flex items-center transition hover:text-blue-900">
-                                                    722.374.1173
+                                                    X.x.X.x
                                                     <FiArrowRight className="mt-1 ml-1"/>
                                                 </a>
                                             </div>
@@ -81,12 +81,12 @@ const Contact = () => {
                                         <div className="flex space-x-2 bg-[#E6FAF6] py-3.5 px-3 justify-between rounded-xl cursor-pointer transition hover:bg-[#e0f5f0]">
                                             <div className="flex flex-col justify-between space-y-3">
                                                 <h2 className="text-zinc-800 font-semibold text-[21px]">
-                                                    Press Inquiries
+                                                    Contact Press
                                                 </h2>
 
                                                 <Link href="#">
                                                     <a className="text-blue-800 font-semibold underline flex items-center transition hover:text-blue-900">
-                                                        press@brenda.com
+                                                        press@CyberConnect.com
                                                         <FiArrowRight className="mt-1 ml-1"/>
                                                     </a>
                                                 </Link>
@@ -101,7 +101,7 @@ const Contact = () => {
 
                                 <div className="mt-10 space-y-7">
                                     <h4 className="text-zinc-800 font-semibold text-3xl">
-                                        Our Offices
+                                        Nos Bureaux
                                     </h4>
 
                                     {/* ================= First location ================ */}
@@ -115,20 +115,20 @@ const Contact = () => {
 
                                         <div className="py-4 sm:px-5 px-4">
                                             <h4 className="text-zinc-800 font-semibold text-[21px]">
-                                                Global HQ
+                                                Siège Social
                                             </h4>
                                             <div className="mt-2">
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    475 Brannan St.
+                                                    12 Avenue pas piquée des hanetons
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    Suite 430
+                                                    Suite 185
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    San Francisco
+                                                    Bordeaux
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    CA 94107
+                                                    CA X.x.X.x
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
                                                     Phone: (650) 316-7500
@@ -148,20 +148,20 @@ const Contact = () => {
 
                                         <div className="py-4 sm:px-5 px-4">
                                             <h4 className="text-zinc-800 font-semibold text-[21px]">
-                                                Chicago Office
+                                                X
                                             </h4>
                                             <div className="mt-2">
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    525 W. Van Buren
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    Suite 1100
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    Chicago
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    IL 60607
+                                                    X
                                                 </p>
                                             </div>
                                         </div>
@@ -178,23 +178,23 @@ const Contact = () => {
 
                                         <div className="py-4 sm:px-5 px-4">
                                             <h4 className="text-zinc-800 font-semibold text-[21px]">
-                                                Mailing Address
+                                               X
                                             </h4>
                                             <div className="mt-2">
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    655 Montgomery St.
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    Suite 490
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    Dept. 17022
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    San Francisco
+                                                    X
                                                 </p>
                                                 <p className="text-zinc-500 font-semibold text-[17px]">
-                                                    CA 94111-2676
+                                                    X
                                                 </p>
                                             </div>
                                         </div>
